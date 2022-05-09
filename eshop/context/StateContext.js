@@ -14,14 +14,14 @@ export const StateContext = ({ children }) => {
   let index;
 
   const onAdd = (product, quantity) => {
-    const checkProductInCart = cartItems.find((item) => item._id === product._id);
+    const checkProductInCart = cartItems.find((item) => item?._id === product._id);
     
     setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
     setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
     
     if(checkProductInCart) {
       const updatedCartItems = cartItems.map((cartProduct) => {
-        if(cartProduct._id === product._id) return {
+        if(cartProduct?._id === product._id) return {
           ...cartProduct,
           quantity: cartProduct.quantity + quantity
         }
